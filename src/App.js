@@ -17,6 +17,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 function App() {
   const [messages, setMessages] = useState();
   const [users, setUsers] = useState();
+  //const [loggedInUser, setUser] = useState();
 
   useEffect(() => {
     const fetchPosts = () => {
@@ -43,6 +44,16 @@ function App() {
           console.log(e.message);
         });
     };
+    // const fetchLogin = async () => {
+    //   try {
+    //     const { data } = await axios.get(
+    //       `https://mini-twitter-back.herokuapp.com/me`
+    //     );
+    //     setUser(data);
+    //   } catch (e) {
+    //     console.log(e.message);
+    //   }
+    // };
 
     // let parameter = searchParameter;
     // try {
@@ -60,6 +71,7 @@ function App() {
 
     fetchPosts();
     fetchUsers();
+    //fetchLogin();
   }, []);
 
   return (
