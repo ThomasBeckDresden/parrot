@@ -3,9 +3,9 @@
   font-family: 'Baloo Tammudu 2', cursive;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.parrotLogo {
+  width: 11%;
+ 
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -14,17 +14,19 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header-part {
+  background-color:white;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #FF3354;
 }
 
+.bodyPart{
+  background-color: #AEBD05;
+}
 .App-link {
   color: #61dafb;
 }
@@ -37,3 +39,4 @@
     transform: rotate(360deg);
   }
 }
+
