@@ -15,7 +15,6 @@ export default function UserAccountDetails() {
       history.push("/");
     } catch (e) {
       console.log(e.message);
-
       history.push("/404");
     }
   }, [history]);
@@ -33,9 +32,9 @@ export default function UserAccountDetails() {
 
   if (loggedInUser && more) {
     return (
-      <div className="col-4 p-5">
-        <div className="userContainer bg-light">
-          <div className="row UserPicture  ">
+      <div className="col-4 p-5 ">
+        <div className="userContainer bg-light rounded">
+          <div className="row UserPicture p-2 ">
             <img
               id="profilePicture"
               src={loggedInUser[0].picture}
@@ -52,7 +51,7 @@ export default function UserAccountDetails() {
             <p> e-mail: {loggedInUser[0].email}</p>
           </div>
           <NavLink to="/">
-            <div className="btn-primary" onClick={handleClick}>
+            <div className="btn-danger" onClick={handleClick}>
               <p> Show less...</p>
             </div>
           </NavLink>
@@ -62,14 +61,14 @@ export default function UserAccountDetails() {
   }
   if (loggedInUser) {
     return (
-      <div className="col-4 p-5">
+      <div className="col-4 p-5 ">
         <div className="bg-light">
-          <div className="row UserPicture">
+          <div className="row UserPicture p-2 ">
             <img src={loggedInUser[0].picture} alt="profilepicture"></img>
           </div>
 
           <NavLink to={`${loggedInUser[0].id}`}>
-            <div className="btn-primary" onClick={handleClick}>
+            <div className="btn-danger" onClick={handleClick}>
               Show more...
             </div>
           </NavLink>

@@ -18,6 +18,7 @@ function App() {
   const [messages, setMessages] = useState();
   const [users, setUsers] = useState();
   //const [loggedInUser, setUser] = useState();
+  const [search, setSearch] = useState();
 
   useEffect(() => {
     const fetchPosts = () => {
@@ -76,10 +77,10 @@ function App() {
 
   return (
     <>
+      <Header />
       <div className="App">
-        <Header />
-        <div className="container bodyPart">
-          <div className="row">
+        <div className="container">
+          <div className="row bodyPart">
             <div className="col-8">
               {messages &&
                 users &&
@@ -94,18 +95,18 @@ function App() {
             <UserAccountDetails />
           </div>
         </div>
-      </div>
-      <div>
-        <Switch>
-          <Route path="/:user_id?"> </Route>
-          <Route path="/:userAccountDetails?">
-            {" "}
-            <UserAccountDetails details={""} />
-          </Route>
-          <Route path="/:individualPost?">
-            <IndividualPost messages={messages} users={users} />
-          </Route>
-        </Switch>
+        <div>
+          <Switch>
+            <Route path="/:user_id?"> </Route>
+            <Route path="/:userAccountDetails?">
+              {" "}
+              <UserAccountDetails details={""} />
+            </Route>
+            <Route path="/:individualPost?/:search?">
+              <IndividualPost messages={messages} users={users} />
+            </Route>
+          </Switch>
+        </div>
       </div>
     </>
   );

@@ -8,10 +8,16 @@ export default function IndividualPost({ message, users }) {
   const user = users.data.find((user) => user.id === messageID);
   // console.log({ user });
   return (
-    <div className="row">
-      <p>Message text : {message.text}</p>
-      <p> Message time: {message.time}</p>
-      <Link to={`/${user.id}`}>{user.name}</Link>
+    <div class="container d-flex justify-content-center bodyContainer">
+      <div className="cardContainer col-md-12 col-xl-6 col-sm-12">
+        <div className="card" style={{ width: "30 rem" }}>
+          <div className="card-body">
+            <p className="card-text">Message text : {message.text}</p>
+            <p className="card-text"> Message time: {message.time}</p>
+            <Link to={`/${user.id}`}>{user.name}</Link>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

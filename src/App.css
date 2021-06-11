@@ -1,12 +1,24 @@
 .App {
   text-align: center;
-  font-family: 'Baloo Tammudu 2', cursive;
+  font-family: "Baloo Tammudu 2", cursive;
+  width: 100%;
+  background-color: #aebd05;
 }
 
-.parrotLogo {
-  width: 11%;
- 
+.bodyContainer {
+  padding: 0px;
+  margin-top: 80px;
 }
+.profile {
+  padding: 150px;
+}
+.card {
+  color: red;
+}
+
+/* .parrotLogo {
+  max-width: 5px;
+} */
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -15,17 +27,17 @@
 }
 
 .header-part {
-  background-color:white;
+  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: #FF3354;
+  /* font-size: calc(10px + 2vmin); */
+  color: #ff3354;
 }
 
-.bodyPart{
-  background-color: #AEBD05;
+.bodyPart {
+  background-color: #aebd05;
 }
 .App-link {
   color: #61dafb;
@@ -39,4 +51,6 @@
     transform: rotate(360deg);
   }
 }
-
+.userContainer {
+  margin-top: 150px;
+}

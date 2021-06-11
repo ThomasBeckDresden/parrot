@@ -2,24 +2,36 @@ import parrot from "./parrot.jpg";
 
 export default function Header() {
   return (
-    <div class="container-fluid header-part d-flex">
-      <div className="me-auto">
-        <form class="d-flex ">
-          <input
-            class="form-control me-2"
-            type="search"
-            placeholder="Search keyword"
-            aria-label="Search"
-          />
-          <button class="btn btn-outline-success" type="submit">
-            Search
-          </button>
-        </form>
+    <>
+      <div className="row justify-content-between p-3">
+        <div className="col-4 align-self-end">
+          <form className="row">
+            <input
+              className="form-control col m-3"
+              type="search"
+              placeholder="Search keyword"
+              aria-label="Search"
+              name="search"
+            />
+            <button class="btn btn-danger col m-3" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
+        <div className="col-2 ">
+          <div className="row  justify-content-end">
+            <div className="row">
+              {" "}
+              <img src={parrot} alt="parrot-logo" className="parrotLogo" />{" "}
+            </div>
+            <div className="row">
+              <h1 className="" style={{ color: "red" }}>
+                Parrot
+              </h1>{" "}
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="  justify-content-end ">
-        <h1 className="align-self-center">Parrot</h1>
-        <img src={parrot} alt="parrot-logo" className="parrotLogo" />
-      </div>
-    </div>
+    </>
   );
 }
