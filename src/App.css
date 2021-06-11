@@ -3,11 +3,19 @@
   font-family: "Baloo Tammudu 2", cursive;
   width: 100%;
   background-color: #aebd05;
+  margin-bottom: 40px;
+}
+.footer {
+  color: red;
+  font-size: large;
+  text-align: center;
+  font-weight: 1;
 }
 
 .bodyContainer {
   padding: 0px;
   margin-top: 80px;
+  margin-bottom: 60px;
 }
 .profile {
   padding: 150px;

@@ -4,7 +4,8 @@ import axios from "axios";
 import IndividualPost from "./IndividualPost.js";
 import Header from "./Header";
 import UserAccountDetails from "./UserAccountDetails.js";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+import { Switch, Route, useLocation } from "react-router-dom";
 // get /users --> gets all the users
 // get /users/{id} --> gets only the user with that ID
 // get /users/{id}/messages --> gets all the messages and user info from that specific user, ordered by time
@@ -13,17 +14,41 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 // get /messages/{id} --> only gets the message with that ID
 // post /messages --> adds a message -> needs text, users_id (time is optional, default is current time)
 // get /me --> gets a rando
-
+function usePageViews() {
+  let location = useLocation();
+  console.log(location);
+  // useEffect(() => {
+  //   ga.send(["pageview", location.pathname]);
+  // }, [location]);
+}
+// https://reactrouter.com/web/api/Hooks
 function App() {
+  // let history = useHistory();
+  usePageViews();
+  // history.push("/messages");
+  /* const { endpoint } = useParams(); */
+  const [endpoint, setEndpoint] = useState();
+  // console.log(endpoint);
   const [messages, setMessages] = useState();
   const [users, setUsers] = useState();
   //const [loggedInUser, setUser] = useState();
-  const [search, setSearch] = useState();
+  const userId = "";
 
+  const endp = "https://mini-twitter-back.herokuapp.com/";
   useEffect(() => {
+    console.log("useEffect is doing something");
+    /* console.log(`${endp}${userId ? `users/${userId}/` : ""}messages`); */
     const fetchPosts = () => {
       axios
-        .get("https://mini-twitter-back.herokuapp.com/messages")
+        .get(
+          `${endp}${
+            endpoint
+              ? `${endpoint}`
+              : userId
+              ? `users/${userId}/messages`
+              : "messages"
+          }`
+        )
         .then((data) => {
           let messages = data;
           console.log(messages);
@@ -38,46 +63,21 @@ function App() {
         .get("https://mini-twitter-back.herokuapp.com/users")
         .then((data) => {
           let users = data;
-          console.log(users);
+          /* console.log(users); */
           setUsers(users);
         })
         .catch((e) => {
           console.log(e.message);
         });
     };
-    // const fetchLogin = async () => {
-    //   try {
-    //     const { data } = await axios.get(
-    //       `https://mini-twitter-back.herokuapp.com/me`
-    //     );
-    //     setUser(data);
-    //   } catch (e) {
-    //     console.log(e.message);
-    //   }
-    // };
-
-    // let parameter = searchParameter;
-    // try {
-    //   console.log(parameter);
-    //   const { data: parameter } = await axios
-    //     .get(`https://mini-twitter-back.herokuapp.com/${parameter}`)
-    //     .then(setPosts(parameter));
-    // } catch (e) {
-    //   console.log(e.message);
-    // }
-    // "id": 11,
-    // "text": "Had anybody seen my phone?",
-    // "time": "2021-06-10T14:04:22.000Z",
-    // "users_id": 9
 
     fetchPosts();
     fetchUsers();
-    //fetchLogin();
-  }, []);
+  }, [userId, endpoint]);
 
   return (
     <>
-      <Header />
+      <Header setEndpoint={setEndpoint} />
       <div className="App">
         <div className="container">
           <div className="row bodyPart">
@@ -89,25 +89,28 @@ function App() {
                     key={message.id}
                     message={message}
                     users={users}
+                    setEndpoint={setEndpoint}
                   />
                 ))}
             </div>
-            <UserAccountDetails />
+            <UserAccountDetails endpoint={endpoint} setEndpoint={setEndpoint} />
           </div>
         </div>
         <div>
           <Switch>
-            <Route path="/:user_id?"> </Route>
-            <Route path="/:userAccountDetails?">
-              {" "}
-              <UserAccountDetails details={""} />
-            </Route>
-            <Route path="/:individualPost?/:search?">
-              <IndividualPost messages={messages} users={users} />
+            <Route path=":user_id?"> </Route>
+            <Route path="/:userAccountDetails?"> </Route>
+            <Route path="$/messages/:individualPost?/:search?">
+              <IndividualPost
+                messages={messages}
+                users={users}
+                setEndpoint={setEndpoint}
+              />
             </Route>
           </Switch>
         </div>
       </div>
+      <p className="footer">© 2021 by Group 1</p>
     </>
   );
 }

@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { NavLink, useHistory } from "react-router-dom";
-export default function UserAccountDetails() {
-  const [loginFinished, setLoginFinished] = useState(false);
+export default function UserAccountDetails({ endpoint, setEndpoint }) {
+  //const [loginFinished, setLoginFinished] = useState(false);
   const [loggedInUser, setUser] = useState();
   const [more, setMore] = useState(false);
   let history = useHistory();
+
   const fetchLogin = useCallback(async () => {
     try {
       const { data } = await axios.get(
@@ -25,8 +26,10 @@ export default function UserAccountDetails() {
   const handleClick = (e) => {
     if (more) {
       setMore(false);
+      //setEndpoint("");
     } else {
       setMore(true);
+      //setEndpoint(`users/${loggedInUser[0].id}/messages`);
     }
   };
 
@@ -67,7 +70,7 @@ export default function UserAccountDetails() {
             <img src={loggedInUser[0].picture} alt="profilepicture"></img>
           </div>
 
-          <NavLink to={`${loggedInUser[0].id}`}>
+          <NavLink to={`users/${loggedInUser[0].id}/messages`}>
             <div className="btn-danger" onClick={handleClick}>
               Show more...
             </div>
