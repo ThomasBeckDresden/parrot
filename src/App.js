@@ -1,10 +1,10 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import IndividualPost from "./IndividualPost.js";
+import IndividualPost from "./IndividualPost";
 import Header from "./Header";
-import UserAccountDetails from "./UserAccountDetails.js";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import UserAccountDetails from "./UserAccountDetails";
+import { Switch, Route, useLocation } from "react-router-dom";
 // get /users --> gets all the users
 // get /users/{id} --> gets only the user with that ID
 // get /users/{id}/messages --> gets all the messages and user info from that specific user, ordered by time
@@ -90,7 +90,7 @@ function App() {
             {" "}
             <UserAccountDetails details={""} />
           </Route>
-          <Route path="/:individualPost?">
+          <Route path="/:individualPost?/:search?">
             <IndividualPost messages={messages} users={users} />
           </Route>
         </Switch>

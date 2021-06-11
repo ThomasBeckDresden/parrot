@@ -2,8 +2,6 @@ import "./App.css";
 import { Link } from "react-router-dom";
 
 export default function IndividualPost({ message, users }) {
-  console.log("u:", users);
-  console.log("m :", message);
   const messageID = message.users_id;
   const user = users.data.find((user) => user.id === messageID);
   // console.log({ user });

@@ -4,12 +4,13 @@ export default function Header() {
   return (
     <div class="container-fluid header-part d-flex">
       <div className="me-auto">
-        <form class="d-flex ">
+        <form class="d-flex">
           <input
             class="form-control me-2"
             type="search"
             placeholder="Search keyword"
             aria-label="Search"
+            name="search"
           />
           <button class="btn btn-outline-success" type="submit">
             Search
