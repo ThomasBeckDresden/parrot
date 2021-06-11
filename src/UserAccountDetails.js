@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { NavLink, useHistory } from "react-router-dom";
-export default function UserAccountDetails({ endpoint, setEndpoint }) {
+export default function UserAccountDetails() {
   //const [loginFinished, setLoginFinished] = useState(false);
   const [loggedInUser, setUser] = useState();
   const [more, setMore] = useState(false);
